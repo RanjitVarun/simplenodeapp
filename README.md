@@ -1,1 +1,1 @@
-# chat-app
+# sample node deploy for heroku
