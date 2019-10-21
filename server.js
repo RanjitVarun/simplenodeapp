@@ -57,8 +57,8 @@ app.get('/db', async (req, res) => {
     const client = await pool.connect()
     const result = await client.query('SELECT * FROM Employee');
     const results = { 'results': (result) ? result.rows : null};
-    console.log(results);
-    res.render('pages/db', results );
+   res.send(results);
+    // res.render('pages/db', results );
 
   } catch (err) {
     console.error(err);
