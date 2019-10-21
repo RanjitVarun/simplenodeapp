@@ -1,7 +1,7 @@
 var PORT = process.env.PORT || 5000;
 var express = require('express');
 var app = express();
-
+const {Pool}=require('pg');
 
 
 var http = require('http');
@@ -35,11 +35,11 @@ server.listen(PORT, function() {
 
 
 
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
   
-//    ssl: true
-// });
+   ssl: true
+});
 
 
 //   pool.connect();
@@ -52,19 +52,19 @@ server.listen(PORT, function() {
 // });
 
 
-// app.get('/db', async (req, res) => {
-//   try {
-//     const client = await pool.connect()
-//     const result = await client.query('SELECT * FROM Employee');
-//     const results = { 'results': (result) ? result.rows : null};
-//     console.log(results);
-//     res.render('pages/db', results );
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect()
+    const result = await client.query('SELECT * FROM Employee');
+    const results = { 'results': (result) ? result.rows : null};
+    console.log(results);
+    res.render('pages/db', results );
 
-//   } catch (err) {
-//     console.error(err);
-//   res.send("Error " + err);
-//   }
-// })
+  } catch (err) {
+    console.error(err);
+  res.send("Error " + err);
+  }
+})
 
 
 
