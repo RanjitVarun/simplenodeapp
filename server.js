@@ -1,6 +1,7 @@
 var PORT = process.env.PORT || 5000;
 var express = require('express');
 var app = express();
+
 const {Pool}=require('pg');
 
 var http = require('http');
@@ -36,6 +37,7 @@ app.get('/db', async (req, res) => {
     const result = await client.query('SELECT * FROM Employee');
     const results = { 'results': (result) ? result.rows : null};
    res.send(results);
+ 
 
   } catch (err) {
     console.error(err);
