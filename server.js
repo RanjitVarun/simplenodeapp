@@ -14,6 +14,7 @@ server.listen(PORT, function() {
   console.log('server running');
 });
 
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   
@@ -37,7 +38,6 @@ app.get('/db', async (req, res) => {
     const result = await client.query('SELECT * FROM Employee');
     const results = { 'results': (result) ? result.rows : null};
    res.send(results);
- 
 
   } catch (err) {
     console.error(err);
@@ -45,6 +45,3 @@ app.get('/db', async (req, res) => {
   }
 })
 
-
-
- 
